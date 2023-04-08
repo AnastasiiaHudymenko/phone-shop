@@ -4,7 +4,6 @@ import {
   CarouselStyled,
   ContainerDropDown,
   DropdownStyled,
-  DropBtnStyled,
 } from './ProductDetalis.styled';
 
 export const ProductDetalisMarkup = ({ product }) => {
