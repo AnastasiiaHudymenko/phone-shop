@@ -11,9 +11,7 @@ export const Img = styled.img`
   }
 `;
 
-export const CarouselStyled = styled(Carousel)`
-  margin-top: 20px;
-`;
+export const CarouselStyled = styled(Carousel)``;
 
 export const ContainerDropDown = styled.div`
   display: flex;
@@ -31,4 +29,8 @@ export const DropBtnStyled = styled(DropdownButton)`
   @media screen and (min-width: 600px) {
     width: 550px;
   }
+`;
+export const ContainerBtn = styled.div`
+  position: fixed;
+  bottom: 10px;
 `;

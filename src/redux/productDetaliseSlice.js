@@ -4,7 +4,7 @@ import { fetchProductDetalis } from './operations';
 const productDetalisSlice = createSlice({
   name: 'productDetalis',
   initialState: {
-    product: [],
+    product: {},
     isLoading: false,
     error: null,
   },

@@ -48,3 +48,9 @@ export const WrapIcons = styled.div`
   gap: 20px;
   cursor: pointer;
 `;
+
+export const BtnFavorite = styled.button`
+  margin: 0;
+  padding: 0;
+  display: contents;
+`;
