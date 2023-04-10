@@ -1,10 +1,10 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { AiOutlineHeart } from 'react-icons/ai';
 import { SlBasket } from 'react-icons/sl';
 import { Button, Card, Badge } from 'react-bootstrap';
 import { addFavoriteProduct, deleteFavoriteSlice } from 'redux/favoriteSlice';
+import { findIndexProduct } from 'redux/favoriteStatusesSlice';
 import {
   List,
   WrapContent,
@@ -17,28 +17,19 @@ import {
 } from './ProductsList.styled';
 
 export const ProductsList = () => {
-  const [favoriteStatuses, setFavoriteStatuses] = useState([]);
-
   const { products } = useSelector(state => state.products);
+  const status = useSelector(state => state.favoriteStatuses);
   const location = useLocation();
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    setFavoriteStatuses(products.map(() => false));
-  }, [products]);
-
   const handleClickFavorite = id => {
     const index = products.findIndex(p => p.id === id);
-    setFavoriteStatuses(prev => {
-      const newState = [...prev];
-      newState[index] = !newState[index];
-      return newState;
-    });
-    if (!favoriteStatuses[index]) {
+    dispatch(findIndexProduct({ products, id }));
+    if (!status[index]) {
       dispatch(addFavoriteProduct(id));
     }
 
-    if (favoriteStatuses[index]) {
+    if (status[index]) {
       dispatch(deleteFavoriteSlice(id));
     }
   };
@@ -59,7 +50,7 @@ export const ProductsList = () => {
                 <WrapIcons>
                   <BtnFavorite onClick={() => handleClickFavorite(id)}>
                     <AiOutlineHeart
-                      color={favoriteStatuses[index] ? 'red' : 'grey'}
+                      color={status[index] ? '#f27373' : 'grey'}
                     />
                   </BtnFavorite>
 

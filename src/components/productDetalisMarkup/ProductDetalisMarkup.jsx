@@ -13,7 +13,6 @@ import {
 export const ProductDetalisMarkup = () => {
   const location = useLocation();
   const { product } = useSelector(state => state.productDetalis);
-  console.log(product.id);
 
   if (!product.id) {
     return <div>Loading...</div>;
@@ -65,7 +64,7 @@ export const ProductDetalisMarkup = () => {
       </ContainerDropDown>
       <ContainerBtn>
         <button>Basket</button>
-        <Link to="checkout">
+        <Link to={`purchase`}>
           <button type="button">Buy</button>
         </Link>
       </ContainerBtn>

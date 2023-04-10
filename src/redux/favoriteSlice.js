@@ -19,6 +19,9 @@ const favoriteSlice = createSlice({
       );
       state.idProducts.splice(index, 1);
     },
+    clearFavoriteProduct(state) {
+      state.favoriteProduct = [];
+    },
   },
   extraReducers: {
     [fetchProductFavoriteDetalise.pending](state) {
@@ -36,6 +39,6 @@ const favoriteSlice = createSlice({
   },
 });
 
-export const { addFavoriteProduct, deleteFavoriteSlice } =
+export const { addFavoriteProduct, deleteFavoriteSlice, clearFavoriteProduct } =
   favoriteSlice.actions;
 export const favoriteReducer = favoriteSlice.reducer;
