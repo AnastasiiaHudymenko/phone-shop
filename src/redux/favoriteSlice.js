@@ -8,6 +8,7 @@ const favoriteSlice = createSlice({
     favoriteProduct: [],
     isLoading: false,
     error: null,
+    favoriteStatuses: [],
   },
   reducers: {
     addFavoriteProduct(state, action) {
@@ -18,6 +19,20 @@ const favoriteSlice = createSlice({
         product => product === action.payload
       );
       state.idProducts.splice(index, 1);
+    },
+    findIndexProduct(state, actions) {
+      if (!actions.payload.products) {
+        state.favoriteStatuses[actions.payload - 1] =
+          !state.favoriteStatuses[actions.payload - 1];
+        return;
+      }
+      console.log(actions.payload);
+      const index = actions.payload.products.findIndex(
+        p => p.id === actions.payload.id
+      );
+
+      state.favoriteStatuses[index] = !state.favoriteStatuses[index];
+      return state;
     },
     clearFavoriteProduct(state) {
       state.favoriteProduct = [];
@@ -39,6 +54,10 @@ const favoriteSlice = createSlice({
   },
 });
 
-export const { addFavoriteProduct, deleteFavoriteSlice, clearFavoriteProduct } =
-  favoriteSlice.actions;
+export const {
+  addFavoriteProduct,
+  deleteFavoriteSlice,
+  clearFavoriteProduct,
+  findIndexProduct,
+} = favoriteSlice.actions;
 export const favoriteReducer = favoriteSlice.reducer;

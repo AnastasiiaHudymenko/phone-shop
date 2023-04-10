@@ -3,8 +3,12 @@ import { Link, useLocation } from 'react-router-dom';
 import { AiOutlineHeart } from 'react-icons/ai';
 import { SlBasket } from 'react-icons/sl';
 import { Button, Card, Badge } from 'react-bootstrap';
-import { addFavoriteProduct, deleteFavoriteSlice } from 'redux/favoriteSlice';
-import { findIndexProduct } from 'redux/favoriteStatusesSlice';
+import {
+  addFavoriteProduct,
+  deleteFavoriteSlice,
+  findIndexProduct,
+} from 'redux/favoriteSlice';
+// import { findIndexProduct } from 'redux/favoriteStatusesSlice';
 import {
   List,
   WrapContent,
@@ -18,7 +22,7 @@ import {
 
 export const ProductsList = () => {
   const { products } = useSelector(state => state.products);
-  const status = useSelector(state => state.favoriteStatuses);
+  const status = useSelector(state => state.favorite.favoriteStatuses);
   const location = useLocation();
   const dispatch = useDispatch();
 

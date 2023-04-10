@@ -7,11 +7,11 @@ export const List = styled.ul`
   align-items: center;
   gap: 20px;
   margin-top: 20px;
+  justify-content: center;
 
   @media screen and (min-width: 600px) {
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: center;
   }
 `;
 
@@ -32,6 +32,11 @@ export const CardImgStyled = styled(Card.Img)`
 
 export const CardStyled = styled(Card)`
   min-height: 300px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease-in-out;
+  :hover {
+    box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
+  }
 `;
 
 export const CardTitleStyled = styled(Card.Title)`

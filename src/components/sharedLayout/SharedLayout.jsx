@@ -12,16 +12,10 @@ import { AiOutlineHeart } from 'react-icons/ai';
 import { SlBasket } from 'react-icons/sl';
 
 export const SharedLayout = () => {
-  const favorites = useSelector(state => state.favoriteStatuses);
+  const favorites = useSelector(state => state.favorite.idProducts);
 
   const getFavoritesCount = () => {
-    return favorites.reduce((acc, el) => {
-      if (el === true) {
-        acc += 1;
-        return acc;
-      }
-      return acc;
-    }, 0);
+    return favorites.length;
   };
   return (
     <>

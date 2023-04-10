@@ -18,7 +18,7 @@ import { favoriteStatusesReducer } from './favoriteStatusesSlice';
 const rootPersistConfig = {
   key: 'root',
   storage,
-  whitelist: ['favoriteStatuses'],
+  blacklist: ['favorite'],
 };
 
 const favoritePersistConfig = {
