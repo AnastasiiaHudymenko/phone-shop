@@ -1,6 +1,8 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const Container = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -12,6 +14,12 @@ export const Container = styled.div`
     flex-wrap: wrap;
     justify-content: center;
   }
+`;
+
+export const LinkStyled = styled(Link)`
+  position: absolute;
+  top: -31px;
+  left: -6px;
 `;
 export const ImgProduct = styled.img`
   height: 230px;
@@ -73,4 +81,9 @@ export const RatingWrapContent = styled.div`
 
   align-items: center;
   gap: 10px;
+`;
+export const SpinnerContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
 `;

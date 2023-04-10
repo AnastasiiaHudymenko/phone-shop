@@ -59,3 +59,9 @@ export const BtnFavorite = styled.button`
   padding: 0;
   display: contents;
 `;
+
+export const SpinnerContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+`;

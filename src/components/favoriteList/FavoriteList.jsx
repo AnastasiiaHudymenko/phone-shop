@@ -1,7 +1,9 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { TiDeleteOutline } from 'react-icons/ti';
 import { ImStarEmpty } from 'react-icons/im';
+import { MdOutlineArrowBackIosNew } from 'react-icons/md';
 import { deleteFavoriteSlice, findIndexProduct } from 'redux/favoriteSlice';
+import Spinner from 'react-bootstrap/Spinner';
 import {
   Container,
   ImgProduct,
@@ -12,18 +14,29 @@ import {
   WrapCard,
   WrapTitleContent,
   RatingWrapContent,
+  SpinnerContainer,
+  LinkStyled,
 } from './FavoriteList.styled';
 
 export const FavoriteList = () => {
-  const { favoriteProduct } = useSelector(state => state.favorite);
+  const { favoriteProduct, isLoading } = useSelector(state => state.favorite);
   const dispatch = useDispatch();
 
   const handleDeleteFavoriteProduct = id => {
     dispatch(deleteFavoriteSlice(id));
     dispatch(findIndexProduct(id));
   };
-  return (
+
+  return isLoading ? (
+    <SpinnerContainer>
+      <Spinner variant="light" animation="grow" />
+    </SpinnerContainer>
+  ) : (
     <Container>
+      <LinkStyled to="/">
+        <MdOutlineArrowBackIosNew />
+      </LinkStyled>
+
       {favoriteProduct.map(el => (
         <WrapCard key={el.id}>
           <ImgThumb>

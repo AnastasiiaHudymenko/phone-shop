@@ -26,7 +26,6 @@ const favoriteSlice = createSlice({
           !state.favoriteStatuses[actions.payload - 1];
         return;
       }
-      console.log(actions.payload);
       const index = actions.payload.products.findIndex(
         p => p.id === actions.payload.id
       );

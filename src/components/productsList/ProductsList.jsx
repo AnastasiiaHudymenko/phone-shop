@@ -2,13 +2,14 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 import { AiOutlineHeart } from 'react-icons/ai';
 import { SlBasket } from 'react-icons/sl';
-import { Button, Card, Badge } from 'react-bootstrap';
+import { Button, Card, Badge, Spinner } from 'react-bootstrap';
+
 import {
   addFavoriteProduct,
   deleteFavoriteSlice,
   findIndexProduct,
 } from 'redux/favoriteSlice';
-// import { findIndexProduct } from 'redux/favoriteStatusesSlice';
+
 import {
   List,
   WrapContent,
@@ -18,10 +19,11 @@ import {
   ContainerByBadgeAndIcon,
   WrapIcons,
   BtnFavorite,
+  SpinnerContainer,
 } from './ProductsList.styled';
 
 export const ProductsList = () => {
-  const { products } = useSelector(state => state.products);
+  const { products, isLoading } = useSelector(state => state.products);
   const status = useSelector(state => state.favorite.favoriteStatuses);
   const location = useLocation();
   const dispatch = useDispatch();
@@ -38,7 +40,11 @@ export const ProductsList = () => {
     }
   };
 
-  return (
+  return isLoading ? (
+    <SpinnerContainer>
+      <Spinner variant="light" animation="grow" />
+    </SpinnerContainer>
+  ) : (
     <List>
       {products.map(({ id, brand, thumbnail, price, title }, index) => (
         <li key={id}>
