@@ -6,14 +6,8 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
+  gap: 40px;
   margin-top: 30px;
-
-  @media screen and (min-width: 400px) {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
 `;
 
 export const LinkStyled = styled(Link)`
@@ -86,4 +80,10 @@ export const SpinnerContainer = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 20px;
+`;
+
+export const ContainerBtn = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;

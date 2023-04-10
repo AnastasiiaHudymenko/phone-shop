@@ -1,9 +1,10 @@
 import { useSelector, useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { TiDeleteOutline } from 'react-icons/ti';
 import { ImStarEmpty } from 'react-icons/im';
 import { MdOutlineArrowBackIosNew } from 'react-icons/md';
 import { deleteBasketSlice, findIndexBasketProduct } from 'redux/favoriteSlice';
-import Spinner from 'react-bootstrap/Spinner';
+import { Spinner, Button } from 'react-bootstrap';
 import imgBg from 'images/Illustration.png';
 import {
   Container,
@@ -17,6 +18,7 @@ import {
   RatingWrapContent,
   SpinnerContainer,
   LinkStyled,
+  ContainerBtn,
 } from './BasketList.styled';
 
 export const BasketList = () => {
@@ -32,6 +34,18 @@ export const BasketList = () => {
     <SpinnerContainer>
       <Spinner variant="light" animation="grow" />
     </SpinnerContainer>
+  ) : basketProduct.length === 0 ? (
+    <Container>
+      <div>
+        <img src={imgBg} alt="" />
+      </div>
+      <ContainerBtn>
+        <p>Cart is empty...</p>
+        <Link to="/">
+          <Button variant="outline-dark">Back to product</Button>
+        </Link>
+      </ContainerBtn>
+    </Container>
   ) : (
     <Container>
       <LinkStyled to="/">
