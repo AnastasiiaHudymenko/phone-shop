@@ -38,3 +38,15 @@ export const fetchProductFavoriteDetalise = createAsyncThunk(
     }
   }
 );
+
+export const fetchProductBasketDetalise = createAsyncThunk(
+  'product/fetchBasketDetalis',
+  async (id, thunkAPI) => {
+    try {
+      const res = await axios.get(`products/${id}`);
+      return res.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);

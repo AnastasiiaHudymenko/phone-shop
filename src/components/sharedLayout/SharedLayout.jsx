@@ -14,9 +14,16 @@ import { SlBasket } from 'react-icons/sl';
 export const SharedLayout = () => {
   const favorites = useSelector(state => state.favorite.idProducts);
 
+  const basket = useSelector(state => state.favorite.idProductsBasket);
+
   const getFavoritesCount = () => {
     return favorites.length;
   };
+
+  const getBasketCount = () => {
+    return basket.length;
+  };
+
   return (
     <>
       <Navbar bg="light" expand="lg">
@@ -29,8 +36,11 @@ export const SharedLayout = () => {
             <NavStyled>
               <LinkStyled to="/basket">
                 <BtnIcon type="button">
-                  <SlBasket size={26} color="grey" />
-                  <SupStyled>{getFavoritesCount()}</SupStyled>
+                  <SlBasket
+                    size={26}
+                    color={getBasketCount() >= 1 ? 'rgb(154 206 155)' : 'grey'}
+                  />
+                  <SupStyled>{getBasketCount()}</SupStyled>
                 </BtnIcon>
               </LinkStyled>
               <LinkStyled to="/favorites">
