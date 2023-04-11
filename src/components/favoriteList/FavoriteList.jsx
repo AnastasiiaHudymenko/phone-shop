@@ -1,4 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
+import { getFavoriteBasket } from 'redux/selectors';
+import { findProductToBasket } from 'components/auxiliary/findProductBasket';
 import { TiDeleteOutline } from 'react-icons/ti';
 import { ImStarEmpty } from 'react-icons/im';
 import { MdOutlineArrowBackIosNew } from 'react-icons/md';
@@ -8,7 +10,7 @@ import {
   findIndexBasketProduct,
   deleteBasketSlice,
   addBasketProduct,
-} from 'redux/favoriteSlice';
+} from 'redux/favoriteBasketSlice';
 import { Spinner, Button } from 'react-bootstrap';
 import {
   Container,
@@ -25,8 +27,8 @@ import {
 } from './FavoriteList.styled';
 
 export const FavoriteList = () => {
-  const { favoriteProduct, isLoading } = useSelector(state => state.favorite);
-  const { idProductsBasket } = useSelector(state => state.favorite);
+  const { favoriteProduct, isLoading, idProductsBasket } =
+    useSelector(getFavoriteBasket);
   const dispatch = useDispatch();
 
   const handleDeleteFavoriteProduct = id => {
@@ -35,16 +37,12 @@ export const FavoriteList = () => {
   };
 
   const handleClickBasketBtn = id => {
-    if (idProductsBasket.some(elId => elId === id)) {
+    if (findProductToBasket(idProductsBasket, id)) {
       dispatch(findIndexBasketProduct(id));
       return dispatch(deleteBasketSlice(id));
     }
     dispatch(addBasketProduct(id));
     dispatch(findIndexBasketProduct(id));
-  };
-
-  const findProductToBasket = productId => {
-    return idProductsBasket.some(id => id === productId);
   };
 
   return isLoading ? (
@@ -79,10 +77,14 @@ export const FavoriteList = () => {
               onClick={() => handleClickBasketBtn(id)}
               type="button"
               variant={
-                findProductToBasket(id) ? 'outline-danger' : 'outline-dark'
+                findProductToBasket(idProductsBasket, id)
+                  ? 'outline-danger'
+                  : 'outline-dark'
               }
             >
-              {findProductToBasket(id) ? 'Delete' : ' Add to Basket'}
+              {findProductToBasket(idProductsBasket, id)
+                ? 'Delete'
+                : ' Add to Basket'}
             </Button>
           </WrapTitleContent>
         </WrapCard>

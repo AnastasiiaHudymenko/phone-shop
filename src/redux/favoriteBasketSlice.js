@@ -4,8 +4,8 @@ import {
   fetchProductBasketDetalise,
 } from './operations';
 
-const favoriteSlice = createSlice({
-  name: 'favorite',
+const favoriteBasketSlice = createSlice({
+  name: 'favoriteBasket',
   initialState: {
     idProducts: [],
     favoriteProduct: [],
@@ -105,5 +105,5 @@ export const {
   deleteBasketSlice,
   findIndexBasketProduct,
   clearBasketProduct,
-} = favoriteSlice.actions;
-export const favoriteReducer = favoriteSlice.reducer;
+} = favoriteBasketSlice.actions;
+export const favoriteBasketReducer = favoriteBasketSlice.reducer;

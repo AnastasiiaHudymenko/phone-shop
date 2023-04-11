@@ -4,7 +4,7 @@ import { Home } from 'pages/Home';
 import { Favorites } from 'pages/Favorites';
 import { Basket } from 'pages/Basket';
 import { ProductDetalis } from 'pages/ProductDetalis';
-
+import { Purchase } from 'pages/Purchase';
 export const App = () => {
   return (
     <Routes>
@@ -13,6 +13,7 @@ export const App = () => {
         <Route path="/favorites" element={<Favorites />} />
         <Route path="/basket" element={<Basket />} />
         <Route path="/product/:id" element={<ProductDetalis />} />
+        <Route path="/purchase" element={<Purchase />} />
       </Route>
     </Routes>
   );

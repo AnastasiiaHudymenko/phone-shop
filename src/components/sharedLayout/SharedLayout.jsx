@@ -1,6 +1,7 @@
 import { Container, Navbar } from 'react-bootstrap';
 import { Outlet } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { getFavoriteBasket } from 'redux/selectors';
 import {
   NavBarStyled,
   LinkStyled,
@@ -14,16 +15,14 @@ import { AiOutlineHeart } from 'react-icons/ai';
 import { SlBasket } from 'react-icons/sl';
 
 export const SharedLayout = () => {
-  const favorites = useSelector(state => state.favorite.idProducts);
-
-  const basket = useSelector(state => state.favorite.idProductsBasket);
+  const { idProductsBasket, idProducts } = useSelector(getFavoriteBasket);
 
   const getFavoritesCount = () => {
-    return favorites.length;
+    return idProducts.length;
   };
 
   const getBasketCount = () => {
-    return basket.length;
+    return idProductsBasket.length;
   };
 
   return (

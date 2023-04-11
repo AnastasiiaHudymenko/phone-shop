@@ -12,22 +12,22 @@ import {
 import storage from 'redux-persist/lib/storage';
 import { productReducer } from './productsSlice';
 import { productDetalisReducer } from './productDetaliseSlice';
-import { favoriteReducer } from './favoriteSlice';
+import { favoriteBasketReducer } from './favoriteBasketSlice';
 
 const rootPersistConfig = {
   key: 'root',
   storage,
-  blacklist: ['favorite', 'products', 'productDetalis'],
+  blacklist: ['favoriteBasket', 'products', 'productDetalis'],
 };
 
 const favoritePersistConfig = {
-  key: 'favorite',
+  key: 'favoriteBasket',
   storage,
   blacklist: ['favoriteProduct', 'basketProduct'],
 };
 
 const rootReducer = combineReducers({
-  favorite: persistReducer(favoritePersistConfig, favoriteReducer),
+  favoriteBasket: persistReducer(favoritePersistConfig, favoriteBasketReducer),
   products: productReducer,
   productDetalis: productDetalisReducer,
 });

@@ -1,5 +1,9 @@
 import styled from 'styled-components';
-import { Card } from 'react-bootstrap';
+import { Card, Badge } from 'react-bootstrap';
+
+export const BadgeStyled = styled(Badge)`
+  margin-bottom: 16px;
+`;
 
 export const List = styled.ul`
   display: flex;
@@ -21,7 +25,6 @@ export const WrapContent = styled.div`
   margin-bottom: 12px;
   flex-direction: column;
   align-items: baseline;
-  gap: 10px;
 `;
 
 export const CardImgStyled = styled(Card.Img)`

@@ -3,11 +3,7 @@ import { Link } from 'react-router-dom';
 
 export const Container = styled.div`
   position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 40px;
-  margin-top: 30px;
+  margin-top: 40px;
 `;
 
 export const LinkStyled = styled(Link)`
@@ -86,4 +82,18 @@ export const ContainerBtn = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+`;
+
+export const ContainerCard = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  gap: 40px;
+`;
+
+export const ContainerBtnSend = styled.div`
+  display: flex;
+  justify-content: center;
+  padding: 50px;
 `;

@@ -1,10 +1,12 @@
 import { useSelector, useDispatch } from 'react-redux';
+import { getProductDetalis, getFavoriteBasket } from 'redux/selectors';
+import { findProductToBasket } from 'components/auxiliary/findProductBasket';
 import { Link, useLocation } from 'react-router-dom';
 import {
   addBasketProduct,
   findIndexBasketProduct,
   deleteBasketSlice,
-} from 'redux/favoriteSlice';
+} from 'redux/favoriteBasketSlice';
 import { MdOutlineArrowBackIosNew } from 'react-icons/md';
 import { IoPricetagsOutline } from 'react-icons/io5';
 import { BsFillCheckCircleFill } from 'react-icons/bs';
@@ -18,25 +20,22 @@ import {
   ContainerContentDesk,
   WrapIcon,
   ContainerAllIcons,
+  Container,
 } from './ProductDetalisMarkup.styled';
 
 export const ProductDetalisMarkup = () => {
   const location = useLocation();
-  const { product, isLoading } = useSelector(state => state.productDetalis);
-  const { idProductsBasket } = useSelector(state => state.favorite);
+  const { product, isLoading } = useSelector(getProductDetalis);
+  const { idProductsBasket } = useSelector(getFavoriteBasket);
   const dispatch = useDispatch();
 
   const handleClickBasketBtn = id => {
-    if (idProductsBasket.some(elId => elId === id)) {
+    if (findProductToBasket(idProductsBasket, id)) {
       dispatch(findIndexBasketProduct(id));
       return dispatch(deleteBasketSlice(id));
     }
     dispatch(addBasketProduct(id));
     dispatch(findIndexBasketProduct(id));
-  };
-
-  const findProductToBasket = productId => {
-    return idProductsBasket.some(id => id === productId);
   };
 
   if (!product.id) {
@@ -51,7 +50,7 @@ export const ProductDetalisMarkup = () => {
       <Spinner variant="light" animation="grow" />
     </SpinnerContainer>
   ) : (
-    <>
+    <Container>
       <Link to={location.state.from}>
         <MdOutlineArrowBackIosNew />
       </Link>
@@ -97,12 +96,16 @@ export const ProductDetalisMarkup = () => {
           onClick={() => handleClickBasketBtn(product.id)}
           type="button"
           variant={
-            findProductToBasket(product.id) ? 'outline-danger' : 'outline-dark'
+            findProductToBasket(idProductsBasket, product.id)
+              ? 'outline-danger'
+              : 'outline-dark'
           }
         >
-          {findProductToBasket(product.id) ? 'Delete' : ' Add to Basket'}
+          {findProductToBasket(idProductsBasket, product.id)
+            ? 'Delete'
+            : ' Add to Basket'}
         </Button>
       </ContainerBtn>
-    </>
+    </Container>
   );
 };

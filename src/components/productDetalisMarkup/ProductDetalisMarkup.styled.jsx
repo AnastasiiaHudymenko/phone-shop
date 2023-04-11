@@ -39,3 +39,8 @@ export const ContainerAllIcons = styled.div`
   gap: 20px;
   margin-top: 20px;
 `;
+
+export const Container = styled.div`
+  padding-top: 30px;
+  padding-bottom: 30px;
+`;

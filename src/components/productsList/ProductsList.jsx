@@ -1,9 +1,10 @@
 import { useSelector, useDispatch } from 'react-redux';
+import { getProducts, getFavoriteBasket } from 'redux/selectors';
 import { Link, useLocation } from 'react-router-dom';
 import { AiOutlineHeart } from 'react-icons/ai';
 import { SlBasket } from 'react-icons/sl';
 import { Button, Card, Badge, Spinner } from 'react-bootstrap';
-
+import { findIndex } from 'components/auxiliary/findIndex';
 import {
   addFavoriteProduct,
   deleteFavoriteSlice,
@@ -11,7 +12,7 @@ import {
   addBasketProduct,
   deleteBasketSlice,
   findIndexBasketProduct,
-} from 'redux/favoriteSlice';
+} from 'redux/favoriteBasketSlice';
 
 import {
   List,
@@ -23,35 +24,36 @@ import {
   WrapIcons,
   BtnFavorite,
   SpinnerContainer,
+  BadgeStyled,
 } from './ProductsList.styled';
 
 export const ProductsList = () => {
-  const { products, isLoading } = useSelector(state => state.products);
-  const status = useSelector(state => state.favorite.favoriteStatuses);
-  const statusBasket = useSelector(state => state.favorite.basketStatuses);
+  const { products, isLoading } = useSelector(getProducts);
+  const { favoriteStatuses, basketStatuses } = useSelector(getFavoriteBasket);
   const location = useLocation();
   const dispatch = useDispatch();
 
   const handleClickFavorite = id => {
-    const index = products.findIndex(p => p.id === id);
+    const index = findIndex(products, id);
+
     dispatch(findIndexProduct({ products, id }));
-    if (!status[index]) {
+    if (!favoriteStatuses[index]) {
       dispatch(addFavoriteProduct(id));
     }
 
-    if (status[index]) {
+    if (favoriteStatuses[index]) {
       dispatch(deleteFavoriteSlice(id));
     }
   };
 
   const handleClickBasket = id => {
-    const index = products.findIndex(p => p.id === id);
+    const index = findIndex(products, id);
     dispatch(findIndexBasketProduct({ products, id }));
-    if (!statusBasket[index]) {
+    if (!basketStatuses[index]) {
       dispatch(addBasketProduct(id));
     }
 
-    if (statusBasket[index]) {
+    if (basketStatuses[index]) {
       dispatch(deleteBasketSlice(id));
     }
   };
@@ -71,19 +73,19 @@ export const ProductsList = () => {
                 <CardTitleStyled>{title}</CardTitleStyled>
                 <ContainerByBadgeAndIcon>
                   <WrapContent>
-                    <Badge bg="dark">{brand}</Badge>
+                    <BadgeStyled bg="dark">{brand}</BadgeStyled>
                     <Badge bg="dark">{price} $</Badge>
                   </WrapContent>
                   <WrapIcons>
                     <BtnFavorite onClick={() => handleClickFavorite(id)}>
                       <AiOutlineHeart
-                        color={status[index] ? '#f27373' : 'grey'}
+                        color={favoriteStatuses[index] ? '#f27373' : 'grey'}
                       />
                     </BtnFavorite>
                     <BtnFavorite onClick={() => handleClickBasket(id)}>
                       <SlBasket
                         color={
-                          statusBasket[index] ? 'rgb(154 206 155)' : 'grey'
+                          basketStatuses[index] ? 'rgb(154 206 155)' : 'grey'
                         }
                       />
                     </BtnFavorite>
