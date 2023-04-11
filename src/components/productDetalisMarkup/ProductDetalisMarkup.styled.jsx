@@ -17,9 +17,7 @@ export const Img = styled.img`
 export const CarouselStyled = styled(Carousel)``;
 
 export const ContainerBtn = styled.div`
-  position: fixed;
-  bottom: 10px;
-  right: 20px;
+  margin-top: 20px;
 `;
 export const SpinnerContainer = styled.div`
   display: flex;

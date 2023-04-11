@@ -1,10 +1,15 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
+import {
+  addBasketProduct,
+  findIndexBasketProduct,
+  deleteBasketSlice,
+} from 'redux/favoriteSlice';
 import { MdOutlineArrowBackIosNew } from 'react-icons/md';
 import { IoPricetagsOutline } from 'react-icons/io5';
 import { BsFillCheckCircleFill } from 'react-icons/bs';
 import { VscStarFull } from 'react-icons/vsc';
-import { Spinner, Badge, Card } from 'react-bootstrap';
+import { Spinner, Badge, Card, Button } from 'react-bootstrap';
 import {
   Img,
   CarouselStyled,
@@ -18,10 +23,20 @@ import {
 export const ProductDetalisMarkup = () => {
   const location = useLocation();
   const { product, isLoading } = useSelector(state => state.productDetalis);
+  const { idProductsBasket } = useSelector(state => state.favorite);
   const dispatch = useDispatch();
 
-  const handleClickBasketBtn = () => {
-    dispatch();
+  const handleClickBasketBtn = id => {
+    if (idProductsBasket.some(elId => elId === id)) {
+      dispatch(findIndexBasketProduct(id));
+      return dispatch(deleteBasketSlice(id));
+    }
+    dispatch(addBasketProduct(id));
+    dispatch(findIndexBasketProduct(id));
+  };
+
+  const findProductToBasket = productId => {
+    return idProductsBasket.some(id => id === productId);
   };
 
   if (!product.id) {
@@ -78,12 +93,15 @@ export const ProductDetalisMarkup = () => {
         </ContainerAllIcons>
       </ContainerContentDesk>
       <ContainerBtn>
-        <button onClick={handleClickBasketBtn} type="button">
-          Basket
-        </button>
-        <Link to={`purchase`}>
-          <button type="button">Buy</button>
-        </Link>
+        <Button
+          onClick={() => handleClickBasketBtn(product.id)}
+          type="button"
+          variant={
+            findProductToBasket(product.id) ? 'outline-danger' : 'outline-dark'
+          }
+        >
+          {findProductToBasket(product.id) ? 'Delete' : ' Add to Basket'}
+        </Button>
       </ContainerBtn>
     </>
   );
