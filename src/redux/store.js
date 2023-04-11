@@ -13,7 +13,6 @@ import storage from 'redux-persist/lib/storage';
 import { productReducer } from './productsSlice';
 import { productDetalisReducer } from './productDetaliseSlice';
 import { favoriteReducer } from './favoriteSlice';
-// import { favoriteStatusesReducer } from './favoriteStatusesSlice';
 
 const rootPersistConfig = {
   key: 'root',
@@ -35,21 +34,6 @@ const rootReducer = combineReducers({
 
 const persistedReducer = persistReducer(rootPersistConfig, rootReducer);
 
-// const persistConfig = {
-//   key: 'root',
-//   storage,
-//   whitelist: ['favoriteStatuses', 'favorite'],
-// };
-
-// const rootReducer = combineReducers({
-//   products: productReducer,
-//   productDetalis: productDetalisReducer,
-//   favorite: favoriteReducer,
-//   favoriteStatuses: favoriteStatusesReducer,
-// });
-
-// const persistedContactsReducer = persistReducer(persistConfig, rootReducer);
-
 export const store = configureStore({
   reducer: persistedReducer,
   middleware: getDefaultMiddleware =>
@@ -59,13 +43,5 @@ export const store = configureStore({
       },
     }),
 });
-
-// export const store = configureStore({
-//   reducer: {
-//     products: productReducer,
-//     productDetalis: productDetalisReducer,
-//     favorite: favoriteReducer,
-//   },
-// });
 
 export const persistor = persistStore(store);

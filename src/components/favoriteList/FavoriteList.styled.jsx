@@ -46,7 +46,7 @@ export const PriceTitle = styled.p`
 export const Title = styled.p`
   color: rgb(77, 104, 205);
   font-weight: 600;
-  margin-bottom: 0;
+  margin-bottom: 6px;
 `;
 
 export const BtnDelete = styled.button`
