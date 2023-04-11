@@ -7,6 +7,8 @@ import {
   BtnIcon,
   NavStyled,
   SupStyled,
+  NavBarMainStyled,
+  ContainerStyled,
 } from './SharedLayout.styled';
 import { AiOutlineHeart } from 'react-icons/ai';
 import { SlBasket } from 'react-icons/sl';
@@ -26,7 +28,7 @@ export const SharedLayout = () => {
 
   return (
     <>
-      <Navbar bg="light" expand="lg">
+      <NavBarMainStyled bg="light" expand="lg">
         <Container>
           <Navbar.Brand>
             <LinkStyled to="/">QPICK</LinkStyled>
@@ -55,10 +57,10 @@ export const SharedLayout = () => {
             </NavStyled>
           </NavBarStyled>
         </Container>
-      </Navbar>
-      <Container>
+      </NavBarMainStyled>
+      <ContainerStyled>
         <Outlet />
-      </Container>
+      </ContainerStyled>
     </>
   );
 };

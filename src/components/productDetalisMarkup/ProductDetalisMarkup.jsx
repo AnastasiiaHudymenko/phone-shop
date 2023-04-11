@@ -1,17 +1,28 @@
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 import { MdOutlineArrowBackIosNew } from 'react-icons/md';
-import Spinner from 'react-bootstrap/Spinner';
+import { IoPricetagsOutline } from 'react-icons/io5';
+import { BsFillCheckCircleFill } from 'react-icons/bs';
+import { VscStarFull } from 'react-icons/vsc';
+import { Spinner, Badge, Card } from 'react-bootstrap';
 import {
   Img,
   CarouselStyled,
   ContainerBtn,
   SpinnerContainer,
+  ContainerContentDesk,
+  WrapIcon,
+  ContainerAllIcons,
 } from './ProductDetalisMarkup.styled';
 
 export const ProductDetalisMarkup = () => {
   const location = useLocation();
   const { product, isLoading } = useSelector(state => state.productDetalis);
+  const dispatch = useDispatch();
+
+  const handleClickBasketBtn = () => {
+    dispatch();
+  };
 
   if (!product.id) {
     return (
@@ -29,6 +40,10 @@ export const ProductDetalisMarkup = () => {
       <Link to={location.state.from}>
         <MdOutlineArrowBackIosNew />
       </Link>
+      <h4>
+        <Badge bg="dark">{product.title}</Badge>
+      </h4>
+
       <CarouselStyled>
         {product.images.length > 0 &&
           product.images.map((srcImg, i) => (
@@ -37,8 +52,35 @@ export const ProductDetalisMarkup = () => {
             </CarouselStyled.Item>
           ))}
       </CarouselStyled>
+      <ContainerContentDesk>
+        <h5>
+          Category: <Badge bg="dark">{product.category}</Badge>
+        </h5>
+        <h5>
+          Brand: <Badge bg="dark"> {product.brand}</Badge>
+        </h5>
+        <Card body>Description: {product.description}</Card>
+        <ContainerAllIcons>
+          <WrapIcon>
+            <IoPricetagsOutline color="#198754" size={24} />
+            <Badge bg="success"> {product.price}$</Badge>
+          </WrapIcon>
+          <WrapIcon>
+            <BsFillCheckCircleFill size={24} color="#0dcaf0" />
+            <Badge bg="info"> Stock: {product.stock}</Badge>
+          </WrapIcon>
+          <WrapIcon>
+            <VscStarFull color="#ffc107" size={24} />
+            <Badge bg="warning" text="dark">
+              {product.rating}
+            </Badge>
+          </WrapIcon>
+        </ContainerAllIcons>
+      </ContainerContentDesk>
       <ContainerBtn>
-        <button>Basket</button>
+        <button onClick={handleClickBasketBtn} type="button">
+          Basket
+        </button>
         <Link to={`purchase`}>
           <button type="button">Buy</button>
         </Link>

@@ -1,7 +1,10 @@
 import styled from 'styled-components';
-import { Navbar, Nav } from 'react-bootstrap';
+import { Navbar, Nav, Container } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
+export const ContainerStyled = styled(Container)`
+  padding-top: 70px;
+`;
 export const NavBarStyled = styled(Navbar.Collapse)`
   justify-content: end;
 `;
@@ -23,4 +26,13 @@ export const NavStyled = styled(Nav)`
 export const SupStyled = styled.sup`
   margin-left: 5px;
   color: grey;
+`;
+
+export const NavBarMainStyled = styled(Navbar)`
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 1px solid #e5e5e5;
+  box-shadow: 0px 5px 5px -5px rgba(34, 60, 80, 0.6);
 `;

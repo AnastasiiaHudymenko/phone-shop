@@ -8,20 +8,36 @@ export const Img = styled.img`
   @media screen and (min-width: 600px) {
     height: 400px;
   }
+
+  @media screen and (min-width: 1000px) {
+    object-fit: contain;
+  }
 `;
 
-export const CarouselStyled = styled(Carousel)`
-  overflow: hidden;
-  border-radius: 20px;
-  border-radius: 20px;
-`;
+export const CarouselStyled = styled(Carousel)``;
 
 export const ContainerBtn = styled.div`
   position: fixed;
   bottom: 10px;
+  right: 20px;
 `;
 export const SpinnerContainer = styled.div`
   display: flex;
   justify-content: center;
+  margin-top: 20px;
+`;
+
+export const ContainerContentDesk = styled.div`
+  margin-top: 20px;
+`;
+
+export const WrapIcon = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 5px;
+`;
+export const ContainerAllIcons = styled.div`
+  display: flex;
+  gap: 20px;
   margin-top: 20px;
 `;
