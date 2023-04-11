@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/phone-shop/static/css/main.ce3a208a.css",
-    "main.js": "/phone-shop/static/js/main.e2f3cc75.js",
+    "main.js": "/phone-shop/static/js/main.3d7f6440.js",
     "index.html": "/phone-shop/index.html",
     "main.ce3a208a.css.map": "/phone-shop/static/css/main.ce3a208a.css.map",
-    "main.e2f3cc75.js.map": "/phone-shop/static/js/main.e2f3cc75.js.map"
+    "main.3d7f6440.js.map": "/phone-shop/static/js/main.3d7f6440.js.map"
   },
   "entrypoints": [
     "static/css/main.ce3a208a.css",
-    "static/js/main.e2f3cc75.js"
+    "static/js/main.3d7f6440.js"
   ]
 }
