@@ -4,12 +4,12 @@ import { Link } from 'react-router-dom';
 import { TiDeleteOutline } from 'react-icons/ti';
 import { ImStarEmpty } from 'react-icons/im';
 import { CiCircleMinus, CiCirclePlus } from 'react-icons/ci';
-import { MdOutlineArrowBackIosNew } from 'react-icons/md';
+import { MdShoppingBasket, MdOutlineArrowBackIosNew } from 'react-icons/md';
 import {
   deleteBasketSlice,
   findIndexBasketProduct,
 } from 'redux/favoriteBasketSlice';
-import { Spinner, Button } from 'react-bootstrap';
+import { Spinner, Button, Badge } from 'react-bootstrap';
 import imgBg from 'images/Illustration.png';
 import {
   Container,
@@ -26,6 +26,8 @@ import {
   ContainerBtn,
   ContainerCard,
   ContainerBtnSend,
+  ButtonStyled,
+  LinkStyledBtn,
 } from './BasketList.styled';
 
 export const BasketList = () => {
@@ -40,6 +42,13 @@ export const BasketList = () => {
 
   const handleClickBtnIncrement = productId => {
     console.log('Click', productId);
+  };
+
+  const totalPriceProduct = () => {
+    return basketProduct.reduce((acc, el) => {
+      acc += el.price;
+      return acc;
+    }, 0);
   };
 
   return isLoading ? (
@@ -93,9 +102,14 @@ export const BasketList = () => {
         ))}
       </ContainerCard>
       <ContainerBtnSend>
-        <Link to="/purchase">
-          <Button variant="outline-dark">Proceed to Checkout</Button>
-        </Link>
+        <h5>
+          Total price: <Badge bg="dark">{totalPriceProduct()}$</Badge>
+        </h5>
+        <LinkStyledBtn to="/purchase">
+          <ButtonStyled variant="outline-dark">
+            Checkout <MdShoppingBasket color="#198754" size={22} />
+          </ButtonStyled>
+        </LinkStyledBtn>
       </ContainerBtnSend>
     </Container>
   );

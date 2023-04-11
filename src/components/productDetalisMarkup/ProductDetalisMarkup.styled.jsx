@@ -44,3 +44,7 @@ export const Container = styled.div`
   padding-top: 30px;
   padding-bottom: 30px;
 `;
+
+export const TitleProduct = styled.h4`
+  margin-top: 10px;
+`;

@@ -1,5 +1,15 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
+
+export const ButtonStyled = styled(Button)`
+  display: flex;
+  gap: 10px;
+`;
+
+export const LinkStyledBtn = styled(Link)`
+  text-decoration: none;
+`;
 
 export const Container = styled.div`
   position: relative;
@@ -94,6 +104,8 @@ export const ContainerCard = styled.div`
 
 export const ContainerBtnSend = styled.div`
   display: flex;
-  justify-content: center;
-  padding: 50px;
+  padding: 30px 0;
+
+  gap: 14px;
+  flex-direction: column;
 `;

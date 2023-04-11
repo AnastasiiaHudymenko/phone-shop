@@ -21,6 +21,7 @@ import {
   WrapIcon,
   ContainerAllIcons,
   Container,
+  TitleProduct,
 } from './ProductDetalisMarkup.styled';
 
 export const ProductDetalisMarkup = () => {
@@ -54,9 +55,9 @@ export const ProductDetalisMarkup = () => {
       <Link to={location.state.from}>
         <MdOutlineArrowBackIosNew />
       </Link>
-      <h4>
+      <TitleProduct>
         <Badge bg="dark">{product.title}</Badge>
-      </h4>
+      </TitleProduct>
 
       <CarouselStyled>
         {product.images.length > 0 &&
