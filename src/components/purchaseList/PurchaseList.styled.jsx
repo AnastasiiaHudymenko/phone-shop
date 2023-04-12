@@ -70,39 +70,3 @@ export const TitleGoods = styled.h3`
   font-style: italic;
   margin-bottom: 20px;
 `;
-
-export const MainContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-  padding: 30px 0;
-  @media screen and (min-width: 600px) {
-    width: 550px;
-  }
-`;
-
-export const InputStyled = styled.input`
-  height: 28px;
-  border-radius: 6px;
-  padding: 4 10px;
-  outline: none;
-  padding: 0 10px;
-  border: 1px solid grey;
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
-`;
-
-export const SelectStyled = styled.select`
-  height: 28px;
-  border-radius: 6px;
-  padding: 4 10px;
-  outline: none;
-  padding: 0 10px;
-  border: 1px solid grey;
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
-`;
-
-export const FormStyled = styled.form`
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-`;
