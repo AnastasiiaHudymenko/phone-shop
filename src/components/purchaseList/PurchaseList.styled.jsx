@@ -28,6 +28,21 @@ export const Container = styled.div`
   border-radius: 26px;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
 `;
+export const ContainerEmptyBasket = styled.div`
+  position: relative;
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+`;
+
+export const ContainerBtn = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
 export const ListProduct = styled.ul`
   display: flex;
   flex-direction: column;
@@ -50,6 +65,8 @@ export const ItemProduct = styled.li`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  border-bottom: 1px solid #efe7e7;
+  padding: 8px;
 `;
 
 export const ThumbImg = styled.div`

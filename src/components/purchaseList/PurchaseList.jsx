@@ -1,8 +1,11 @@
 import { Map, Marker } from 'pigeon-maps';
 import { useSelector } from 'react-redux';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { getFavoriteBasket } from 'redux/selectors';
-import { Badge } from 'react-bootstrap';
+import { Badge, Modal, Button } from 'react-bootstrap';
 import { IoPricetagsOutline } from 'react-icons/io5';
+import { BsCheckCircleFill } from 'react-icons/bs';
 import { PurchaseForm } from 'components/purchaseForm/PurchaseForm';
 import {
   WrapMap,
@@ -17,12 +20,43 @@ import {
   WrapContent,
   WrapIcon,
   TitleGoods,
+  ContainerEmptyBasket,
+  ContainerBtn,
 } from './PurchaseList.styled';
+import imgBg from 'images/Illustration.png';
 
 export const PurchaseList = () => {
+  const [smShow, setSmShow] = useState(true);
   const { basketProduct } = useSelector(getFavoriteBasket);
 
-  return (
+  return basketProduct.length === 0 ? (
+    <>
+      <ContainerEmptyBasket>
+        <img src={imgBg} alt="" />
+
+        <ContainerBtn>
+          <Link to="/">
+            <Button variant="outline-dark">Back to product</Button>
+          </Link>
+        </ContainerBtn>
+      </ContainerEmptyBasket>
+      <Modal
+        size="sm"
+        show={smShow}
+        onHide={() => setSmShow(false)}
+        aria-labelledby="example-modal-sizes-title-sm"
+      >
+        <Modal.Header closeButton>
+          <Modal.Title id="example-modal-sizes-title-sm">
+            Successfully <BsCheckCircleFill color="#198754" />
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          Your order has been placed, the manager will contact you soon.
+        </Modal.Body>
+      </Modal>
+    </>
+  ) : (
     <>
       <Container>
         <TitleGoods>
@@ -48,6 +82,7 @@ export const PurchaseList = () => {
           ))}
         </ListProduct>
       </Container>
+
       <div>
         <Container>
           <TitleGoods>

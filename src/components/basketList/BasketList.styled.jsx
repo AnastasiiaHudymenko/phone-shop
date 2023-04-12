@@ -14,6 +14,14 @@ export const LinkStyledBtn = styled(Link)`
 export const Container = styled.div`
   position: relative;
   margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+export const ContainerList = styled.div`
+  position: relative;
+  margin-top: 40px;
 `;
 
 export const LinkStyled = styled(Link)`

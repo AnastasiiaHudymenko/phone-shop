@@ -67,6 +67,11 @@ const favoriteBasketSlice = createSlice({
     clearBasketProduct(state) {
       state.basketProduct = [];
     },
+    clearAllBasketProduct(state) {
+      state.basketProduct = [];
+      state.idProductsBasket = [];
+      state.basketStatuses = [];
+    },
   },
   extraReducers: {
     [fetchProductFavoriteDetalise.pending](state) {
@@ -104,6 +109,7 @@ export const {
   addBasketProduct,
   deleteBasketSlice,
   findIndexBasketProduct,
+  clearAllBasketProduct,
   clearBasketProduct,
 } = favoriteBasketSlice.actions;
 export const favoriteBasketReducer = favoriteBasketSlice.reducer;

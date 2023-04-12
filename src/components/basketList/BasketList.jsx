@@ -28,6 +28,7 @@ import {
   ContainerBtnSend,
   ButtonStyled,
   LinkStyledBtn,
+  ContainerList,
 } from './BasketList.styled';
 
 export const BasketList = () => {
@@ -67,7 +68,7 @@ export const BasketList = () => {
       </ContainerBtn>
     </Container>
   ) : (
-    <Container>
+    <ContainerList>
       <LinkStyled to="/">
         <MdOutlineArrowBackIosNew />
       </LinkStyled>
@@ -111,6 +112,6 @@ export const BasketList = () => {
           </ButtonStyled>
         </LinkStyledBtn>
       </ContainerBtnSend>
-    </Container>
+    </ContainerList>
   );
 };
