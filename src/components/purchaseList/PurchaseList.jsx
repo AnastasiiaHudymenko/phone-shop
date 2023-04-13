@@ -22,6 +22,7 @@ import {
   TitleGoods,
   ContainerEmptyBasket,
   ContainerBtn,
+  ContainerWrap,
 } from './PurchaseList.styled';
 import imgBg from 'images/Illustration.png';
 
@@ -32,7 +33,7 @@ export const PurchaseList = () => {
   return basketProduct.length === 0 ? (
     <>
       <ContainerEmptyBasket>
-        <img src={imgBg} alt="" />
+        <img src={imgBg} alt="empty basket" />
 
         <ContainerBtn>
           <Link to="/">
@@ -41,7 +42,7 @@ export const PurchaseList = () => {
         </ContainerBtn>
       </ContainerEmptyBasket>
       <Modal
-        size="sm"
+        size="lg"
         show={smShow}
         onHide={() => setSmShow(false)}
         aria-labelledby="example-modal-sizes-title-sm"
@@ -57,7 +58,7 @@ export const PurchaseList = () => {
       </Modal>
     </>
   ) : (
-    <>
+    <ContainerWrap>
       <Container>
         <TitleGoods>
           {' '}
@@ -83,8 +84,8 @@ export const PurchaseList = () => {
         </ListProduct>
       </Container>
 
-      <div>
-        <Container>
+      <Container>
+        <div>
           <TitleGoods>
             <Badge bg="dark">Form Checkout</Badge>
           </TitleGoods>
@@ -105,8 +106,8 @@ export const PurchaseList = () => {
               <PurchaseForm />
             </div>
           </div>
-        </Container>
-      </div>
-    </>
+        </div>
+      </Container>
+    </ContainerWrap>
   );
 };

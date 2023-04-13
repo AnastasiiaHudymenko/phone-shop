@@ -3,13 +3,12 @@ import { getFavoriteBasket } from 'redux/selectors';
 import { Link } from 'react-router-dom';
 import { TiDeleteOutline } from 'react-icons/ti';
 import { ImStarEmpty } from 'react-icons/im';
-import { CiCircleMinus, CiCirclePlus } from 'react-icons/ci';
 import { MdShoppingBasket, MdOutlineArrowBackIosNew } from 'react-icons/md';
 import {
   deleteBasketSlice,
   findIndexBasketProduct,
 } from 'redux/favoriteBasketSlice';
-import { Spinner, Button, Badge } from 'react-bootstrap';
+import { Button, Badge } from 'react-bootstrap';
 import imgBg from 'images/Illustration.png';
 import {
   Container,
@@ -21,7 +20,6 @@ import {
   WrapCard,
   WrapTitleContent,
   RatingWrapContent,
-  SpinnerContainer,
   LinkStyled,
   ContainerBtn,
   ContainerCard,
@@ -32,17 +30,12 @@ import {
 } from './BasketList.styled';
 
 export const BasketList = () => {
-  const { basketProduct, isLoading } = useSelector(getFavoriteBasket);
+  const { basketProduct } = useSelector(getFavoriteBasket);
   const dispatch = useDispatch();
-  let countProduct = 1;
 
   const handleDeleteBasketProduct = id => {
     dispatch(deleteBasketSlice(id));
     dispatch(findIndexBasketProduct(id));
-  };
-
-  const handleClickBtnIncrement = productId => {
-    console.log('Click', productId);
   };
 
   const totalPriceProduct = () => {
@@ -52,13 +45,9 @@ export const BasketList = () => {
     }, 0);
   };
 
-  return isLoading ? (
-    <SpinnerContainer>
-      <Spinner variant="light" animation="grow" />
-    </SpinnerContainer>
-  ) : basketProduct.length === 0 ? (
+  return basketProduct.length === 0 ? (
     <Container>
-      <img src={imgBg} alt="" />
+      <img src={imgBg} alt="empty basket" />
 
       <ContainerBtn>
         <p>Cart is empty...</p>
@@ -92,13 +81,6 @@ export const BasketList = () => {
               </RatingWrapContent>
               <Title>{title}</Title>
             </WrapTitleContent>
-            <button onClick={() => handleClickBtnIncrement(id)} type="button">
-              <CiCirclePlus />
-            </button>
-            <span>{countProduct}</span>
-            <button type="button">
-              <CiCircleMinus />
-            </button>
           </WrapCard>
         ))}
       </ContainerCard>

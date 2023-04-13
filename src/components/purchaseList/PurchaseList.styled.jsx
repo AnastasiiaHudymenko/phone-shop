@@ -23,11 +23,17 @@ export const PickupTitle = styled.p`
 `;
 
 export const Container = styled.div`
+  width: 100%;
   background-color: white;
   padding: 20px;
   border-radius: 26px;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+
+  @media screen and (min-width: 901px) {
+    width: 50%;
+  }
 `;
+
 export const ContainerEmptyBasket = styled.div`
   position: relative;
   margin-top: 40px;
@@ -86,4 +92,21 @@ export const TitleGoods = styled.h3`
   font-size: 18px;
   font-style: italic;
   margin-bottom: 20px;
+`;
+
+export const ContainerWrap = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: baseline;
+  gap: 20px;
+
+  @media screen and (min-width: 901px) {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: baseline;
+    gap: 20px;
+  }
 `;

@@ -11,12 +11,11 @@ import { MdOutlineArrowBackIosNew } from 'react-icons/md';
 import { IoPricetagsOutline } from 'react-icons/io5';
 import { BsFillCheckCircleFill } from 'react-icons/bs';
 import { VscStarFull } from 'react-icons/vsc';
-import { Spinner, Badge, Card, Button } from 'react-bootstrap';
+import { Badge, Card, Button } from 'react-bootstrap';
 import {
   Img,
   CarouselStyled,
   ContainerBtn,
-  SpinnerContainer,
   ContainerContentDesk,
   WrapIcon,
   ContainerAllIcons,
@@ -26,7 +25,7 @@ import {
 
 export const ProductDetalisMarkup = () => {
   const location = useLocation();
-  const { product, isLoading } = useSelector(getProductDetalis);
+  const { product } = useSelector(getProductDetalis);
   const { idProductsBasket } = useSelector(getFavoriteBasket);
   const dispatch = useDispatch();
 
@@ -39,18 +38,7 @@ export const ProductDetalisMarkup = () => {
     dispatch(findIndexBasketProduct(id));
   };
 
-  if (!product.id) {
-    return (
-      <SpinnerContainer>
-        <Spinner variant="light" animation="grow" />
-      </SpinnerContainer>
-    );
-  }
-  return isLoading ? (
-    <SpinnerContainer>
-      <Spinner variant="light" animation="grow" />
-    </SpinnerContainer>
-  ) : (
+  return (
     <Container>
       <Link to={location.state.from}>
         <MdOutlineArrowBackIosNew />
@@ -60,7 +48,7 @@ export const ProductDetalisMarkup = () => {
       </TitleProduct>
 
       <CarouselStyled>
-        {product.images.length > 0 &&
+        {product?.images?.length > 0 &&
           product.images.map((srcImg, i) => (
             <CarouselStyled.Item key={i}>
               <Img className="d-block w-100" src={srcImg} alt="First slide" />

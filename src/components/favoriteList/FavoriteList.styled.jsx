@@ -16,6 +16,10 @@ export const Container = styled.div`
   }
 `;
 
+export const TitleEmptyFavorite = styled.p`
+  margin: 0;
+`;
+
 export const LinkStyled = styled(Link)`
   position: absolute;
   top: -31px;

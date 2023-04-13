@@ -2,9 +2,14 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchProductBasketDetalise } from 'redux/operations';
 import { clearBasketProduct } from 'redux/favoriteBasketSlice';
+import { Link } from 'react-router-dom';
 import { getFavoriteBasket } from 'redux/selectors';
 import { PurchaseList } from 'components/purchaseList/PurchaseList';
-import styled from 'styled-components';
+import {
+  MainContainer,
+  SpinnerContainer,
+} from 'components/globalStyled/global.styled';
+import { Spinner, Button } from 'react-bootstrap';
 
 export const Purchase = () => {
   const { idProductsBasket, isLoading } = useSelector(getFavoriteBasket);
@@ -16,21 +21,17 @@ export const Purchase = () => {
       dispatch(clearBasketProduct());
     };
   }, [dispatch, idProductsBasket]);
-  return (
-    !isLoading && (
-      <MainContainer>
-        <PurchaseList />
-      </MainContainer>
-    )
+  return isLoading ? (
+    <SpinnerContainer>
+      <Spinner variant="dark" animation="grow" />
+    </SpinnerContainer>
+  ) : (
+    <MainContainer>
+      <Link to="/">
+        {' '}
+        <Button variant="outline-dark">Back to product</Button>
+      </Link>
+      <PurchaseList />
+    </MainContainer>
   );
 };
-
-const MainContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-  padding: 30px 0;
-  @media screen and (min-width: 600px) {
-    width: 550px;
-  }
-`;

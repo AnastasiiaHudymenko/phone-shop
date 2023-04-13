@@ -3,7 +3,7 @@ import { getProducts, getFavoriteBasket } from 'redux/selectors';
 import { Link, useLocation } from 'react-router-dom';
 import { AiOutlineHeart } from 'react-icons/ai';
 import { SlBasket } from 'react-icons/sl';
-import { Button, Card, Badge, Spinner } from 'react-bootstrap';
+import { Button, Card, Badge } from 'react-bootstrap';
 import { findIndex } from 'components/auxiliary/findIndex';
 import {
   addFavoriteProduct,
@@ -23,12 +23,11 @@ import {
   ContainerByBadgeAndIcon,
   WrapIcons,
   BtnFavorite,
-  SpinnerContainer,
   BadgeStyled,
 } from './ProductsList.styled';
 
 export const ProductsList = () => {
-  const { products, isLoading } = useSelector(getProducts);
+  const { products } = useSelector(getProducts);
   const { favoriteStatuses, basketStatuses } = useSelector(getFavoriteBasket);
   const location = useLocation();
   const dispatch = useDispatch();
@@ -58,47 +57,41 @@ export const ProductsList = () => {
     }
   };
 
-  return isLoading ? (
-    <SpinnerContainer>
-      <Spinner variant="light" animation="grow" />
-    </SpinnerContainer>
-  ) : (
-    <>
-      <List>
-        {products.map(({ id, brand, thumbnail, price, title }, index) => (
-          <li key={id}>
-            <CardStyled style={{ width: '18rem' }}>
-              <CardImgStyled variant="top" src={thumbnail} alt={title} />
-              <Card.Body>
-                <CardTitleStyled>{title}</CardTitleStyled>
-                <ContainerByBadgeAndIcon>
-                  <WrapContent>
-                    <BadgeStyled bg="dark">{brand}</BadgeStyled>
-                    <Badge bg="dark">{price} $</Badge>
-                  </WrapContent>
-                  <WrapIcons>
-                    <BtnFavorite onClick={() => handleClickFavorite(id)}>
-                      <AiOutlineHeart
-                        color={favoriteStatuses[index] ? '#f27373' : 'grey'}
-                      />
-                    </BtnFavorite>
-                    <BtnFavorite onClick={() => handleClickBasket(id)}>
-                      <SlBasket
-                        color={
-                          basketStatuses[index] ? 'rgb(154 206 155)' : 'grey'
-                        }
-                      />
-                    </BtnFavorite>
-                  </WrapIcons>
-                </ContainerByBadgeAndIcon>
-                <Link to={`product/${id}`} state={{ from: location }}>
-                  <Button variant="outline-dark">More Info</Button>
-                </Link>
-              </Card.Body>
-            </CardStyled>
-          </li>
-        ))}
-      </List>
-    </>
+  return (
+    <List>
+      {products.map(({ id, brand, thumbnail, price, title }, index) => (
+        <li key={id}>
+          <CardStyled style={{ width: '18rem' }}>
+            <CardImgStyled variant="top" src={thumbnail} alt={title} />
+            <Card.Body>
+              <CardTitleStyled>{title}</CardTitleStyled>
+              <ContainerByBadgeAndIcon>
+                <WrapContent>
+                  <BadgeStyled bg="dark">{brand}</BadgeStyled>
+                  <Badge bg="dark">{price} $</Badge>
+                </WrapContent>
+                <WrapIcons>
+                  <BtnFavorite onClick={() => handleClickFavorite(id)}>
+                    <AiOutlineHeart
+                      color={favoriteStatuses[index] ? '#f27373' : 'grey'}
+                    />
+                  </BtnFavorite>
+                  <BtnFavorite onClick={() => handleClickBasket(id)}>
+                    <SlBasket
+                      color={
+                        basketStatuses[index] ? 'rgb(154 206 155)' : 'grey'
+                      }
+                    />
+                  </BtnFavorite>
+                </WrapIcons>
+              </ContainerByBadgeAndIcon>
+              <Link to={`product/${id}`} state={{ from: location }}>
+                <Button variant="outline-dark">More Info</Button>
+              </Link>
+            </Card.Body>
+          </CardStyled>
+        </li>
+      ))}
+    </List>
   );
 };

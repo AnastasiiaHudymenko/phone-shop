@@ -11,7 +11,7 @@ import {
   deleteBasketSlice,
   addBasketProduct,
 } from 'redux/favoriteBasketSlice';
-import { Spinner, Button } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import {
   Container,
   ImgProduct,
@@ -22,13 +22,13 @@ import {
   WrapCard,
   WrapTitleContent,
   RatingWrapContent,
-  SpinnerContainer,
   LinkStyled,
+  TitleEmptyFavorite,
 } from './FavoriteList.styled';
+import { Link } from 'react-router-dom';
 
 export const FavoriteList = () => {
-  const { favoriteProduct, isLoading, idProductsBasket } =
-    useSelector(getFavoriteBasket);
+  const { favoriteProduct, idProductsBasket } = useSelector(getFavoriteBasket);
   const dispatch = useDispatch();
 
   const handleDeleteFavoriteProduct = id => {
@@ -45,10 +45,15 @@ export const FavoriteList = () => {
     dispatch(findIndexBasketProduct(id));
   };
 
-  return isLoading ? (
-    <SpinnerContainer>
-      <Spinner variant="light" animation="grow" />
-    </SpinnerContainer>
+  return favoriteProduct.length === 0 ? (
+    <Container>
+      <TitleEmptyFavorite>
+        Your list of favorite products is empty, return to products
+      </TitleEmptyFavorite>
+      <Link to="/">
+        <Button variant="outline-dark">Back to product</Button>
+      </Link>
+    </Container>
   ) : (
     <Container>
       <LinkStyled to="/">

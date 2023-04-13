@@ -45,5 +45,6 @@ export const TotalPrice = styled(Field)`
   background-color: black;
   border: none;
   color: white;
-  padding-left: 10px;
+
+  margin-left: 20px;
 `;

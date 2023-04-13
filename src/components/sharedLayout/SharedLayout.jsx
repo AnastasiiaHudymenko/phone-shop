@@ -1,4 +1,4 @@
-import { Container, Navbar } from 'react-bootstrap';
+import { Container, Navbar, Badge } from 'react-bootstrap';
 import { Outlet } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { getFavoriteBasket } from 'redux/selectors';
@@ -30,24 +30,28 @@ export const SharedLayout = () => {
       <NavBarMainStyled bg="light" expand="lg">
         <Container>
           <Navbar.Brand>
-            <LinkStyled to="/">QPICK</LinkStyled>
+            <LinkStyled to="/">
+              <Badge bg="dark">QPICK</Badge>
+            </LinkStyled>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <NavBarStyled id="basic-navbar-nav">
             <NavStyled>
               <LinkStyled to="/basket">
-                <BtnIcon type="button">
+                <BtnIcon type="button" variant="outline-dark">
+                  <span>Basket</span>
                   <SlBasket
-                    size={26}
+                    size={20}
                     color={getBasketCount() >= 1 ? 'rgb(154 206 155)' : 'grey'}
                   />
                   <SupStyled>{getBasketCount()}</SupStyled>
                 </BtnIcon>
               </LinkStyled>
               <LinkStyled to="/favorites">
-                <BtnIcon type="button">
+                <BtnIcon type="button" variant="outline-dark">
+                  <span>Favorite</span>
                   <AiOutlineHeart
-                    size={26}
+                    size={20}
                     color={getFavoritesCount() >= 1 ? '#f27373' : 'grey'}
                   />
                   <SupStyled>{getFavoritesCount()}</SupStyled>
