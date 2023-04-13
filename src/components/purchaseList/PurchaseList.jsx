@@ -1,9 +1,8 @@
 import { Map, Marker } from 'pigeon-maps';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { getFavoriteBasket } from 'redux/selectors';
-import { Badge, Modal, Button } from 'react-bootstrap';
+import { Badge, Modal } from 'react-bootstrap';
 import { IoPricetagsOutline } from 'react-icons/io5';
 import { BsCheckCircleFill } from 'react-icons/bs';
 import { PurchaseForm } from 'components/purchaseForm/PurchaseForm';
@@ -21,7 +20,6 @@ import {
   WrapIcon,
   TitleGoods,
   ContainerEmptyBasket,
-  ContainerBtn,
   ContainerWrap,
 } from './PurchaseList.styled';
 import imgBg from 'images/Illustration.png';
