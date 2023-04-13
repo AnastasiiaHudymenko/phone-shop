@@ -34,12 +34,6 @@ export const PurchaseList = () => {
     <>
       <ContainerEmptyBasket>
         <img src={imgBg} alt="empty basket" />
-
-        <ContainerBtn>
-          <Link to="/">
-            <Button variant="outline-dark">Back to product</Button>
-          </Link>
-        </ContainerBtn>
       </ContainerEmptyBasket>
       <Modal
         size="lg"
